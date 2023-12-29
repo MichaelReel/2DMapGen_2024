@@ -1,0 +1,17 @@
+[gd_scene load_steps=4 format=3 uid="uid://bf66h11dys2qd"]
+
+[ext_resource type="Shader" path="res://ShaderDrawn/Scratch_01.gdshader" id="1_quph1"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_2tu82"]
+shader = ExtResource("1_quph1")
+
+[sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_w8fpg"]
+
+[node name="Scratch01" type="TextureRect"]
+material = SubResource("ShaderMaterial_2tu82")
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = SubResource("PlaceholderTexture2D_w8fpg")
