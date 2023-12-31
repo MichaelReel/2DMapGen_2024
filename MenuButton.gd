@@ -4,6 +4,7 @@ const CATEGORIES := {
 	"Pixel Drawn" : "res://PixelDrawn",
 	"Vector Drawn" : "res://VectorDrawn",
 	"Shader Drawn" : "res://ShaderDrawn",
+	"Tile Set Drawn" : "res://TileSetDrawn",
 }
 
 @onready var display_node := %DisplayControl
