@@ -1,0 +1,12 @@
+[gd_scene load_steps=3 format=3 uid="uid://d10o8r6kgq70b"]
+
+[ext_resource type="TileSet" uid="uid://hfehl8drwy1l" path="res://TileSetDrawn/WaveFormCollapse/tiles-0002_set.tres" id="1_ywde4"]
+[ext_resource type="Script" path="res://TileSetDrawn/WaveFormCollapse/WFCTileMap_02.gd" id="2_vbo37"]
+
+[node name="WaveFormCollapse" type="Node2D"]
+
+[node name="TileMap" type="TileMap" parent="."]
+tile_set = ExtResource("1_ywde4")
+format = 2
+script = ExtResource("2_vbo37")
+_seed = 1

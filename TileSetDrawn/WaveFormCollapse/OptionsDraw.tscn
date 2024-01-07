@@ -1,0 +1,212 @@
+[gd_scene load_steps=22 format=3 uid="uid://bayfrkhn81ca1"]
+
+[ext_resource type="Script" path="res://TileSetDrawn/WaveFormCollapse/OptionsDraw.gd" id="1_6pukx"]
+[ext_resource type="Shader" path="res://TileSetDrawn/WaveFormCollapse/OptionsDraw.gdshader" id="2_xb57r"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_yshpk"]
+resource_local_to_scene = true
+shader = ExtResource("2_xb57r")
+shader_parameter/on = false
+
+[sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_vuj8n"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_metcg"]
+resource_local_to_scene = true
+shader = ExtResource("2_xb57r")
+shader_parameter/on = false
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_s4512"]
+resource_local_to_scene = true
+shader = ExtResource("2_xb57r")
+shader_parameter/on = false
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_n4x17"]
+resource_local_to_scene = true
+shader = ExtResource("2_xb57r")
+shader_parameter/on = false
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_tra3r"]
+resource_local_to_scene = true
+shader = ExtResource("2_xb57r")
+shader_parameter/on = false
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_e8cxd"]
+resource_local_to_scene = true
+shader = ExtResource("2_xb57r")
+shader_parameter/on = false
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_hn1sf"]
+resource_local_to_scene = true
+shader = ExtResource("2_xb57r")
+shader_parameter/on = false
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_57wxk"]
+resource_local_to_scene = true
+shader = ExtResource("2_xb57r")
+shader_parameter/on = false
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_cxawg"]
+resource_local_to_scene = true
+shader = ExtResource("2_xb57r")
+shader_parameter/on = false
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_1i4dh"]
+resource_local_to_scene = true
+shader = ExtResource("2_xb57r")
+shader_parameter/on = false
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_ymjps"]
+resource_local_to_scene = true
+shader = ExtResource("2_xb57r")
+shader_parameter/on = false
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_uymkt"]
+resource_local_to_scene = true
+shader = ExtResource("2_xb57r")
+shader_parameter/on = false
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_5xie2"]
+resource_local_to_scene = true
+shader = ExtResource("2_xb57r")
+shader_parameter/on = false
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_30prp"]
+resource_local_to_scene = true
+shader = ExtResource("2_xb57r")
+shader_parameter/on = false
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_cfgrb"]
+resource_local_to_scene = true
+shader = ExtResource("2_xb57r")
+shader_parameter/on = false
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_88s0v"]
+resource_local_to_scene = true
+shader = ExtResource("2_xb57r")
+shader_parameter/on = false
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_5mbr7"]
+resource_local_to_scene = true
+shader = ExtResource("2_xb57r")
+shader_parameter/on = false
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_spasa"]
+resource_local_to_scene = true
+shader = ExtResource("2_xb57r")
+shader_parameter/on = false
+
+[node name="OptionsDraw" type="Node2D"]
+script = ExtResource("1_6pukx")
+
+[node name="0" type="Node2D" parent="."]
+
+[node name="0_0" type="Sprite2D" parent="0"]
+material = SubResource("ShaderMaterial_yshpk")
+texture = SubResource("PlaceholderTexture2D_vuj8n")
+centered = false
+
+[node name="1_0" type="Sprite2D" parent="0"]
+material = SubResource("ShaderMaterial_metcg")
+position = Vector2(1, 0)
+texture = SubResource("PlaceholderTexture2D_vuj8n")
+centered = false
+
+[node name="2_0" type="Sprite2D" parent="0"]
+material = SubResource("ShaderMaterial_s4512")
+position = Vector2(2, 0)
+texture = SubResource("PlaceholderTexture2D_vuj8n")
+centered = false
+
+[node name="3_0" type="Sprite2D" parent="0"]
+material = SubResource("ShaderMaterial_n4x17")
+position = Vector2(3, 0)
+texture = SubResource("PlaceholderTexture2D_vuj8n")
+centered = false
+
+[node name="4_0" type="Sprite2D" parent="0"]
+material = SubResource("ShaderMaterial_tra3r")
+position = Vector2(4, 0)
+texture = SubResource("PlaceholderTexture2D_vuj8n")
+centered = false
+
+[node name="5_0" type="Sprite2D" parent="0"]
+material = SubResource("ShaderMaterial_e8cxd")
+position = Vector2(5, 0)
+texture = SubResource("PlaceholderTexture2D_vuj8n")
+centered = false
+
+[node name="1" type="Node2D" parent="."]
+position = Vector2(0, 1)
+
+[node name="0_1" type="Sprite2D" parent="1"]
+material = SubResource("ShaderMaterial_hn1sf")
+texture = SubResource("PlaceholderTexture2D_vuj8n")
+centered = false
+
+[node name="1_1" type="Sprite2D" parent="1"]
+material = SubResource("ShaderMaterial_57wxk")
+position = Vector2(1, 0)
+texture = SubResource("PlaceholderTexture2D_vuj8n")
+centered = false
+
+[node name="2_1" type="Sprite2D" parent="1"]
+material = SubResource("ShaderMaterial_cxawg")
+position = Vector2(2, 0)
+texture = SubResource("PlaceholderTexture2D_vuj8n")
+centered = false
+
+[node name="3_1" type="Sprite2D" parent="1"]
+material = SubResource("ShaderMaterial_1i4dh")
+position = Vector2(3, 0)
+texture = SubResource("PlaceholderTexture2D_vuj8n")
+centered = false
+
+[node name="4_1" type="Sprite2D" parent="1"]
+material = SubResource("ShaderMaterial_ymjps")
+position = Vector2(4, 0)
+texture = SubResource("PlaceholderTexture2D_vuj8n")
+centered = false
+
+[node name="5_1" type="Sprite2D" parent="1"]
+material = SubResource("ShaderMaterial_uymkt")
+position = Vector2(5, 0)
+texture = SubResource("PlaceholderTexture2D_vuj8n")
+centered = false
+
+[node name="2" type="Node2D" parent="."]
+position = Vector2(0, 2)
+
+[node name="0_2" type="Sprite2D" parent="2"]
+material = SubResource("ShaderMaterial_5xie2")
+texture = SubResource("PlaceholderTexture2D_vuj8n")
+centered = false
+
+[node name="1_2" type="Sprite2D" parent="2"]
+material = SubResource("ShaderMaterial_30prp")
+position = Vector2(1, 0)
+texture = SubResource("PlaceholderTexture2D_vuj8n")
+centered = false
+
+[node name="2_2" type="Sprite2D" parent="2"]
+material = SubResource("ShaderMaterial_cfgrb")
+position = Vector2(2, 0)
+texture = SubResource("PlaceholderTexture2D_vuj8n")
+centered = false
+
+[node name="3_2" type="Sprite2D" parent="2"]
+material = SubResource("ShaderMaterial_88s0v")
+position = Vector2(3, 0)
+texture = SubResource("PlaceholderTexture2D_vuj8n")
+centered = false
+
+[node name="4_2" type="Sprite2D" parent="2"]
+material = SubResource("ShaderMaterial_5mbr7")
+position = Vector2(4, 0)
+texture = SubResource("PlaceholderTexture2D_vuj8n")
+centered = false
+
+[node name="5_2" type="Sprite2D" parent="2"]
+material = SubResource("ShaderMaterial_spasa")
+position = Vector2(5, 0)
+texture = SubResource("PlaceholderTexture2D_vuj8n")
+centered = false
