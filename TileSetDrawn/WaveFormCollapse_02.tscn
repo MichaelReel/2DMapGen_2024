@@ -9,4 +9,4 @@
 tile_set = ExtResource("1_ywde4")
 format = 2
 script = ExtResource("2_vbo37")
-_seed = 1
+_seed = 3

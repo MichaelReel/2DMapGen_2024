@@ -39,7 +39,7 @@ func _ready() -> void:
 	
 	while _process_on_ready and not _tile_front.is_empty():
 		_resolve_the_lowest_option_tile(_tiles, _tile_connection_mappings, _tile_generation_area, _rng)
-	
+
 func _create_debug_tile_display(draw_vector_names: Array, tile_connection_mappings: Dictionary, tile_pos: Vector2i) -> Node2D:
 	var test_options_draw: Node2D = OptionsDraw.instantiate()
 	add_child(test_options_draw)
@@ -142,7 +142,7 @@ func _resolve_tile_to_an_option(
 		return {}
 	var option: String = available_options[rng.randi_range(0, len(available_options) - 1)]
 	
-	#print("collapsing ", pos, " to ", option)
+	print("collapsing ", pos, " to ", option)
 	
 	return _collapse_wave_on_tile(
 		pos, option, tiles, tile_connection_mappings, tile_generation_area
@@ -290,17 +290,23 @@ func _get_tile_valid_neighbours_map() -> Dictionary:
 		"int_corner_BL": Vector2i(3, 2),
 		"wall_B": Vector2i(4, 2),
 		"int_corner_BR": Vector2i(5, 2),
+		
+		"track_TB": Vector2i(1, 3),
+		"track_TBLR": Vector2i(2, 3),
+		"track_LR": Vector2i(3, 3),
+		"track_BLR": Vector2i(0, 4),
+		"track_TLR": Vector2i(1, 4),
+		"track_TBL": Vector2i(2, 4),
+		"track_TBR": Vector2i(3, 4),
+		"track_TR": Vector2i(0, 5),
+		"track_TL": Vector2i(1, 5),
+		"track_BR": Vector2i(2, 5),
+		"track_BL": Vector2i(3, 5),
+		"track_T": Vector2i(0, 6),
+		"track_L": Vector2i(1, 6),
+		"track_R": Vector2i(2, 6),
+		"track_B": Vector2i(3, 6),
 	}
-	
-	var top_precipice_tiles := ["upper_cobbles", "wall_B", "int_corner_BR", "int_corner_BL"]
-	var bottom_precipice_tiles := ["upper_cobbles", "wall_T", "int_corner_TR", "int_corner_TL"]
-	var left_precipice_tiles := ["upper_cobbles", "wall_R", "int_corner_TR", "int_corner_BR"]
-	var right_precipice_tiles := ["upper_cobbles", "wall_L", "int_corner_TL", "int_corner_BL"]
-	
-	var top_blocking_tiles := ["lower_cobbles", "wall_T", "ext_corner_TR", "ext_corner_TL"]
-	var bottom_blocking_tiles := ["lower_cobbles","wall_B", "ext_corner_BR", "ext_corner_BL"]
-	var left_blocking_tiles := ["lower_cobbles","wall_L", "ext_corner_TL", "ext_corner_BL"]
-	var right_blocking_tiles := ["lower_cobbles","wall_R", "ext_corner_TR", "ext_corner_BR"]
 	
 	var left_up_face_tiles := ["wall_T", "int_corner_TL", "ext_corner_TR"]
 	var right_up_face_tiles := ["wall_T", "int_corner_TR", "ext_corner_TL"]
@@ -311,7 +317,32 @@ func _get_tile_valid_neighbours_map() -> Dictionary:
 	var up_right_face_tiles := ["wall_R", "int_corner_TR", "ext_corner_BR"]
 	var down_right_face_tiles := ["wall_R", "int_corner_BR", "ext_corner_TR"]
 	
+	# Define lists of tiles that can (and can't) be connected to from below (B)
+	var up_tracks := ["ascent_T", "track_TB", "track_TBLR", "track_BLR", "track_TBL", "track_TBR", "track_BR", "track_BL", "track_B"]
+	var non_up_tracks := ["lower_cobbles", "track_LR", "track_TLR", "track_TR", "track_TL", "track_T", "track_L", "track_R"]
 	
+	# Define lists of tiles that can (and can't) be connected to from above (T)
+	var down_tracks := ["ascent_B", "track_TB", "track_TBLR", "track_TLR", "track_TBL", "track_TBR", "track_TR", "track_TL", "track_T"]
+	var non_down_tracks := ["lower_cobbles", "track_LR", "track_BLR", "track_BR", "track_BL", "track_L", "track_R", "track_B"]
+	
+	# Define lists of tiles that can (and can't) be connected to from the right (R)
+	var left_tracks := ["ascent_L", "track_TBLR", "track_LR", "track_BLR", "track_TLR", "track_TBR", "track_TR", "track_BR", "track_R"]
+	var non_left_tracks := ["lower_cobbles", "track_TB", "track_TBL", "track_TL", "track_BL", "track_T", "track_L", "track_B"]
+	
+	# Define lists of tiles that can (and can't) be connected to from the left (L)
+	var right_tracks := ["ascent_R", "track_TBLR", "track_LR", "track_BLR", "track_TLR", "track_TBL", "track_TL", "track_BL", "track_L"]
+	var non_right_tracks := ["lower_cobbles", "track_TB", "track_TBR", "track_TR", "track_BR", "track_T", "track_R", "track_B"]
+
+	var top_precipice_tiles := ["upper_cobbles", "wall_B", "int_corner_BR", "int_corner_BL"]
+	var bottom_precipice_tiles := ["upper_cobbles", "wall_T", "int_corner_TR", "int_corner_TL"]
+	var left_precipice_tiles := ["upper_cobbles", "wall_R", "int_corner_TR", "int_corner_BR"]
+	var right_precipice_tiles := ["upper_cobbles", "wall_L", "int_corner_TL", "int_corner_BL"]
+	
+	var top_blocking_tiles := non_up_tracks + ["wall_T", "ext_corner_TR", "ext_corner_TL"]
+	var bottom_blocking_tiles := non_down_tracks + ["wall_B", "ext_corner_BR", "ext_corner_BL"]
+	var left_blocking_tiles := non_left_tracks + ["wall_L", "ext_corner_TL", "ext_corner_BL"]
+	var right_blocking_tiles := non_right_tracks + ["wall_R", "ext_corner_TR", "ext_corner_BR"]
+
 	# Define and return the valid neighbours 
 	return {
 		"tiles_by_name": tiles_by_name,
@@ -323,7 +354,7 @@ func _get_tile_valid_neighbours_map() -> Dictionary:
 				Vector2i.RIGHT: ["ascent_B"] + right_down_face_tiles,
 			},
 			"ascent_B": {
-				Vector2i.UP: ["lower_cobbles", "ascent_T"],
+				Vector2i.UP: up_tracks + ["ascent_T"],
 				Vector2i.DOWN: ["upper_cobbles", "ascent_T"],
 				Vector2i.LEFT: left_down_face_tiles,
 				Vector2i.RIGHT: right_down_face_tiles,
@@ -355,7 +386,7 @@ func _get_tile_valid_neighbours_map() -> Dictionary:
 			"ascent_R": {
 				Vector2i.UP: up_right_face_tiles,
 				Vector2i.DOWN: down_right_face_tiles,
-				Vector2i.LEFT: ["lower_cobbles", "ascent_L"],
+				Vector2i.LEFT: left_tracks + ["ascent_L"],
 				Vector2i.RIGHT: ["upper_cobbles", "ascent_L"],
 			},
 			"upper_cobbles": {
@@ -368,7 +399,7 @@ func _get_tile_valid_neighbours_map() -> Dictionary:
 				Vector2i.UP: up_left_face_tiles,
 				Vector2i.DOWN: down_left_face_tiles,
 				Vector2i.LEFT: ["upper_cobbles", "ascent_R"],
-				Vector2i.RIGHT: ["lower_cobbles", "ascent_R"],
+				Vector2i.RIGHT: right_tracks + ["ascent_R"],
 			},
 			"wall_L": {
 				Vector2i.UP: ["ascent_L"] + up_left_face_tiles,
@@ -396,7 +427,7 @@ func _get_tile_valid_neighbours_map() -> Dictionary:
 			},
 			"ascent_T": {
 				Vector2i.UP: ["upper_cobbles", "ascent_B"],
-				Vector2i.DOWN: ["lower_cobbles", "ascent_B"],
+				Vector2i.DOWN: down_tracks + ["ascent_B"],
 				Vector2i.LEFT: left_up_face_tiles,
 				Vector2i.RIGHT: right_up_face_tiles,
 			},
@@ -423,6 +454,96 @@ func _get_tile_valid_neighbours_map() -> Dictionary:
 				Vector2i.DOWN: bottom_precipice_tiles,
 				Vector2i.LEFT: ["ascent_B"] + left_down_face_tiles,
 				Vector2i.RIGHT: right_precipice_tiles,
+			},
+			"track_TB": {
+				Vector2i.UP: up_tracks,
+				Vector2i.DOWN: down_tracks,
+				Vector2i.LEFT: non_left_tracks,
+				Vector2i.RIGHT: non_right_tracks,
+			},
+			"track_TBLR": {
+				Vector2i.UP: up_tracks,
+				Vector2i.DOWN: down_tracks,
+				Vector2i.LEFT: left_tracks,
+				Vector2i.RIGHT: right_tracks,
+			},
+			"track_LR": {
+				Vector2i.UP: non_up_tracks,
+				Vector2i.DOWN: non_down_tracks,
+				Vector2i.LEFT: left_tracks,
+				Vector2i.RIGHT: right_tracks,
+			},
+			"track_BLR": {
+				Vector2i.UP: non_up_tracks,
+				Vector2i.DOWN: down_tracks,
+				Vector2i.LEFT: left_tracks,
+				Vector2i.RIGHT: right_tracks,
+			},
+			"track_TLR": {
+				Vector2i.UP: up_tracks,
+				Vector2i.DOWN: non_down_tracks,
+				Vector2i.LEFT: left_tracks,
+				Vector2i.RIGHT: right_tracks,
+			},
+			"track_TBL": {
+				Vector2i.UP: up_tracks,
+				Vector2i.DOWN: down_tracks,
+				Vector2i.LEFT: left_tracks,
+				Vector2i.RIGHT: non_right_tracks,
+			},
+			"track_TBR": {
+				Vector2i.UP: up_tracks,
+				Vector2i.DOWN: down_tracks,
+				Vector2i.LEFT: non_left_tracks,
+				Vector2i.RIGHT: right_tracks,
+			},
+			"track_TR": {
+				Vector2i.UP: up_tracks,
+				Vector2i.DOWN: non_down_tracks,
+				Vector2i.LEFT: non_left_tracks,
+				Vector2i.RIGHT: right_tracks,
+			},
+			"track_TL": {
+				Vector2i.UP: up_tracks,
+				Vector2i.DOWN: non_down_tracks,
+				Vector2i.LEFT: left_tracks,
+				Vector2i.RIGHT: non_right_tracks,
+			},
+			"track_BR": {
+				Vector2i.UP: non_up_tracks,
+				Vector2i.DOWN: down_tracks,
+				Vector2i.LEFT: non_left_tracks,
+				Vector2i.RIGHT: right_tracks,
+			},
+			"track_BL": {
+				Vector2i.UP: non_up_tracks,
+				Vector2i.DOWN: down_tracks,
+				Vector2i.LEFT: left_tracks,
+				Vector2i.RIGHT: non_right_tracks,
+			},
+			"track_T": {
+				Vector2i.UP: up_tracks,
+				Vector2i.DOWN: non_down_tracks,
+				Vector2i.LEFT: non_left_tracks,
+				Vector2i.RIGHT: non_right_tracks,
+			},
+			"track_L": {
+				Vector2i.UP: non_up_tracks,
+				Vector2i.DOWN: non_down_tracks,
+				Vector2i.LEFT: left_tracks,
+				Vector2i.RIGHT: non_right_tracks,
+			},
+			"track_R": {
+				Vector2i.UP: non_up_tracks,
+				Vector2i.DOWN: non_down_tracks,
+				Vector2i.LEFT: non_left_tracks,
+				Vector2i.RIGHT: right_tracks,
+			},
+			"track_B": {
+				Vector2i.UP: non_up_tracks,
+				Vector2i.DOWN: down_tracks,
+				Vector2i.LEFT: non_left_tracks,
+				Vector2i.RIGHT: non_right_tracks,
 			},
 		}
 	}
