@@ -1,10 +1,11 @@
 extends MenuButton
 
-const CATEGORIES := {
+const CATEGORIES : Dictionary = {
 	"Pixel Drawn" : "res://PixelDrawn",
 	"Vector Drawn" : "res://VectorDrawn",
 	"Shader Drawn" : "res://ShaderDrawn",
 	"Tile Set Drawn" : "res://TileSetDrawn",
+	"Compute Shader Drawn" : "res://ComputeShaderDrawn",
 }
 
 @onready var display_node := %DisplayControl
@@ -17,7 +18,7 @@ func _ready() -> void:
 	var _err : Error = popup.connect("id_pressed", _popup_menu_selected)
 	
 	var id: int = 0
-	for category in CATEGORIES.keys():
+	for category: String in CATEGORIES.keys():
 		var path : String = CATEGORIES[category]
 		
 		# Get list from path and add to menu
@@ -44,8 +45,8 @@ func _ready() -> void:
 
 func _popup_menu_selected(id : int) -> void:
 	var scene_path : String = menu_selections[id]
-	var scene_resource : Resource = load(scene_path)
-	var scene = scene_resource.instantiate()
+	var scene_resource : PackedScene = load(scene_path)
+	var scene: CanvasItem = scene_resource.instantiate()
 	_clear_free_children(display_node)
 	display_node.add_child(scene)
 
@@ -54,4 +55,3 @@ func _clear_free_children(node : Node) -> void:
 	for child in node.get_children():
 		node.remove_child(child)
 		child.queue_free()
-
