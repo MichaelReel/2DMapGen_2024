@@ -1,7 +1,7 @@
 [gd_scene load_steps=8 format=3 uid="uid://t6niia7p61ca"]
 
-[ext_resource type="Script" path="res://ComputeShaderDrawn/texture_merger.gd" id="1_7kd4n"]
-[ext_resource type="Script" path="res://ComputeShaderDrawn/dispatcher.gd" id="2_u12iw"]
+[ext_resource type="Script" path="res://ComputeShaderDrawn/texture_merger/texture_merger.gd" id="1_7kd4n"]
+[ext_resource type="Script" path="res://ComputeShaderDrawn/texture_merger/texture_merger_dispatcher.gd" id="2_u12iw"]
 
 [sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_gqequ"]
 
@@ -38,5 +38,5 @@ unique_name_in_owner = true
 script = ExtResource("2_u12iw")
 noise_texture = SubResource("NoiseTexture2D_oajks")
 base_texture = SubResource("GradientTexture2D_r574q")
-_compute_shader = "res://ComputeShaderDrawn/texture_merger.glsl"
+_compute_shader = "res://ComputeShaderDrawn/texture_merger/texture_merger.glsl"
 _renderer = NodePath("..")
