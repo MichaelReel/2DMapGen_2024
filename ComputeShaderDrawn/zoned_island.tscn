@@ -10,13 +10,15 @@
 [sub_resource type="FastNoiseLite" id="FastNoiseLite_ewtuh"]
 
 [sub_resource type="NoiseTexture2D" id="NoiseTexture2D_jng2f"]
+generate_mipmaps = false
+normalize = false
 color_ramp = SubResource("Gradient_3ra01")
 noise = SubResource("FastNoiseLite_ewtuh")
 
 [sub_resource type="Resource" id="Resource_op57m"]
 script = ExtResource("3_kmk8d")
 texture = SubResource("NoiseTexture2D_jng2f")
-data_format = 22
+data_format = 36
 usage_bits = 200
 binding = 2
 

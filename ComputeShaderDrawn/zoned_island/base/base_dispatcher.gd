@@ -64,7 +64,7 @@ func _prepare_input_texture_uniform(texture_input: GLSLTextureInput) -> void:
 	var input_format: RDTextureFormat = RDTextureFormat.new()
 	input_format.width = input_image.get_size().x
 	input_format.height = input_image.get_size().y
-	input_format.format = texture_input.data_format 
+	input_format.format = texture_input.data_format
 	input_format.usage_bits = texture_input.usage_bits
 	
 	# Check the range is updated
@@ -85,7 +85,7 @@ func _prepare_input_texture_uniform(texture_input: GLSLTextureInput) -> void:
 
 func _prepare_input_texture_uniforms() -> void:
 	for texture_input: GLSLTextureInput in glsl_texture_inputs:
-		_prepare_input_texture_uniform(texture_input)
+		await _prepare_input_texture_uniform(texture_input)
 
 func _prepare_output_buffer_uniform(buffer_output: GLSLBufferOutput) -> void:
 	# Give the output some memory to use
@@ -204,6 +204,7 @@ func base_dispatch() -> void:
 	_extract_output_buffers()
 	_extract_output_images()
 	_clean_up()
+	computation_complete.emit()
 
 ##endregion
 
