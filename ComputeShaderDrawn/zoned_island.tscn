@@ -1,0 +1,40 @@
+[gd_scene load_steps=10 format=3 uid="uid://d00c37pf70dih"]
+
+[ext_resource type="Script" path="res://ComputeShaderDrawn/zoned_island/zoned_island.gd" id="1_8dcsc"]
+[ext_resource type="Script" path="res://ComputeShaderDrawn/zoned_island/zoned_island_dispatcher.gd" id="2_f4cji"]
+[ext_resource type="Script" path="res://ComputeShaderDrawn/zoned_island/base/glsl_texture_input.gd" id="3_kmk8d"]
+[ext_resource type="Script" path="res://ComputeShaderDrawn/zoned_island/base/glsl_texture_output.gd" id="4_ohjes"]
+
+[sub_resource type="Gradient" id="Gradient_3ra01"]
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_ewtuh"]
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_jng2f"]
+color_ramp = SubResource("Gradient_3ra01")
+noise = SubResource("FastNoiseLite_ewtuh")
+
+[sub_resource type="Resource" id="Resource_op57m"]
+script = ExtResource("3_kmk8d")
+texture = SubResource("NoiseTexture2D_jng2f")
+data_format = 22
+usage_bits = 200
+binding = 2
+
+[sub_resource type="Resource" id="Resource_rr76u"]
+script = ExtResource("4_ohjes")
+data_format = 36
+image_format = 5
+size = Vector2i(512, 512)
+usage_bits = 200
+binding = 3
+
+[node name="ZonedIsland" type="TextureRect"]
+script = ExtResource("1_8dcsc")
+
+[node name="ZonedIslandDispatcher" type="Node" parent="." node_paths=PackedStringArray("render_target")]
+unique_name_in_owner = true
+script = ExtResource("2_f4cji")
+render_target = NodePath("..")
+glsl_texture_inputs = Array[ExtResource("3_kmk8d")]([SubResource("Resource_op57m")])
+glsl_texture_outputs = Array[ExtResource("4_ohjes")]([SubResource("Resource_rr76u")])
+_compute_shader = "res://ComputeShaderDrawn/zoned_island/base_sample_test.glsl"

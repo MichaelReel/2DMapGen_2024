@@ -1,0 +1,14 @@
+[remap]
+
+importer="glsl"
+type="RDShaderFile"
+uid="uid://d4cxj4mm58xnp"
+path="res://.godot/imported/base_sample_test.glsl-146c96673218887531c3ab765e0ab96e.res"
+
+[deps]
+
+source_file="res://ComputeShaderDrawn/zoned_island/base_sample_test.glsl"
+dest_files=["res://.godot/imported/base_sample_test.glsl-146c96673218887531c3ab765e0ab96e.res"]
+
+[params]
+
